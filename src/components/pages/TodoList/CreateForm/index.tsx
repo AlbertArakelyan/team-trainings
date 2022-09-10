@@ -16,7 +16,6 @@ const CreateForm = () => {
   const dispatch = useAppDispatch();
 
   const { list: todoList } = useAppSelector((state) => state.todo);
-  console.log(todoList);
   
   const [value, setValue] = useState<string>('');
 
@@ -29,9 +28,11 @@ const CreateForm = () => {
 
     dispatch(addTodo({
       id: nanoid(),
-      value,
-      done: false,
+      title: value,
+      completed: false,
     }));
+
+    setValue('');
   };
 
   // Effect
