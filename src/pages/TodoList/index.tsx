@@ -1,17 +1,26 @@
-import React from 'react';
-import { useAppSelector } from '../../store';
+import React, { useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../store';
 
 // Components
 import CreateForm from '../../components/pages/TodoList/CreateForm';
 import TodoItem from '../../components/pages/TodoList/TodoItem';
+
+// Actions
+import { fetchTodos } from '../../store/todo/todo.actions';
 
 // Styles
 import styles from './TodoList.module.scss';
 
 
 const TodoList = () => {
+  const dispatch = useAppDispatch();
+
   const { list: todoList } = useAppSelector((state) => state.todo);
   console.log(todoList);
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
   
   const todoListContent = (
     todoList.map((todoItem) => {

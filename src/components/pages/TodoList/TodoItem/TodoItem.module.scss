@@ -6,3 +6,8 @@
   border: solid 2px red;
   margin-bottom: 12px;
 }
+.todo-item__title {
+  &--completed {
+    text-decoration: line-through;
+  }
+}

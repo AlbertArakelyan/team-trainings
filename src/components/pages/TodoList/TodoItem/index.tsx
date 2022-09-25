@@ -1,8 +1,8 @@
-import React, { FC, MouseEventHandler, MouseEvent } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { useAppDispatch } from '../../../../store';
 
 // Actions
-import { deleteTodo } from '../../../../store/todo/todo.actions';
+import { deleteTodo, toggleTodo } from '../../../../store/todo/todo.actions';
 
 // Types
 import { ITodoItemProps } from './types';
@@ -18,10 +18,14 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     dispatch(deleteTodo(id));
   };
 
+  const handleToggle = () => {
+    dispatch(toggleTodo(id));
+  };
+
   return (
     <li className={styles['todo-item']}>
-      <input type="checkbox" checked={completed} />
-      <span>{title}</span>
+      <input onChange={handleToggle} type="checkbox" checked={completed} />
+      <span className={`${styles['todo-item__title']} ${completed ? styles['todo-item__title--completed'] : ''}`}>{title}</span>
       <button onClick={handleClick}>Delete</button>
     </li>
   );

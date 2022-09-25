@@ -3,4 +3,6 @@ import { ITodo } from '../../types/todo';
 
 interface ITodoState {
   list: ITodo[];
+  loading: boolean;
+  error: boolean;
 }
